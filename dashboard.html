@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CRT Attendence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000000;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h1 {
+            color: #333;
+        }
+
+        .logout-btn {
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #c0392b;
+        }
+
+        .dashboard-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .welcome-card {
+            background: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .welcome-card h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .welcome-card p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        .user-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .user-info p {
+            margin: 10px 0;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .disclaimer-text {
+            text-align: center;
+            margin-top: 20px;
+            color: #e74c3c;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 10px;
+            background: #fff3f3;
+            border-radius: 5px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .attendance-section {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .attendance-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .attendance-periods {
+            margin-top: 15px;
+        }
+
+        .attendance-period {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .period-date {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .period-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 8px;
+        }
+
+        .period-slot {
+            padding: 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 11px;
+        }
+
+        .period-slot.present {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #28a745;
+        }
+
+        .period-slot.absent {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #dc3545;
+        }
+
+        .slot-time {
+            font-weight: 600;
+            margin-bottom: 3px;
+            font-size: 10px;
+        }
+
+        .slot-status {
+            font-weight: 500;
+            font-size: 12px;
+        }
+
+        .attendance-summary {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .attendance-summary p {
+            margin: 5px 0;
+            color: #495057;
+            font-size: 14px;
+        }
+
+        .no-attendance {
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>CRT Attendence</h1>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </nav>
+
+    <div class="dashboard-content">
+        <div class="welcome-card">
+            <h2>Welcome to the Dashboard!</h2>
+            <p>You have successfully logged in.</p>
+            <div class="user-info">
+                <p><strong>ID Number:</strong> <span id="displayUsername"></span></p>
+                <p><strong>Name:</strong> <span id="displayName"></span></p>
+                <p><strong>Branch:</strong> <span id="displayBranch"></span></p>
+                <p><strong>Department:</strong> <span id="displayDepartment"></span></p>
+                <p><strong>Cluster:</strong> <span id="displayCluster"></span></p>
+                <p><strong>CRT Section:</strong> <span id="displayCrtSec"></span></p>
+                <p><strong>CRT Room:</strong> <span id="displayCrtRoom"></span></p>
+                <p><strong>Login Time:</strong> <span id="loginTime"></span></p>
+            </div>
+            <div class="attendance-section">
+                <h3>Your Attendance Record</h3>
+                <div id="attendanceContainer">
+                    <p class="no-attendance">Loading attendance data...</p>
+                </div>
+            </div>
+            <p class="disclaimer-text">⚠️ Disclaimer: This website is not handled by KL University. It is handled by Y23 students.</p>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        
+        if (isLoggedIn !== 'true') {
+            window.location.href = 'index.html';
+        }
+
+        // Display username
+        const username = localStorage.getItem('username');
+        document.getElementById('displayUsername').textContent = username || 'Unknown';
+
+        // Display login time
+        const loginTime = new Date().toLocaleString();
+        document.getElementById('loginTime').textContent = loginTime;
+
+        // Load and display attendance data
+        async function loadAttendance() {
+            try {
+                const response = await fetch('attendance.json');
+                const data = await response.json();
+                
+                // Find attendance for the logged-in user by ID
+                const userAttendance = data.students.find(student => student.id === username);
+                
+                const container = document.getElementById('attendanceContainer');
+                
+                if (userAttendance && userAttendance.attendance) {
+                    // Display student information
+                    document.getElementById('displayName').textContent = userAttendance.name || 'N/A';
+                    document.getElementById('displayBranch').textContent = userAttendance.branch || 'N/A';
+                    document.getElementById('displayDepartment').textContent = userAttendance.department || 'N/A';
+                    document.getElementById('displayCluster').textContent = userAttendance.cluster || 'N/A';
+                    document.getElementById('displayCrtSec').textContent = userAttendance.crt_sec || 'N/A';
+                    document.getElementById('displayCrtRoom').textContent = userAttendance.crt_room || 'N/A';
+                    
+                    // Filter attendance to show dates 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, and 23 (2026-05-11, 2026-05-12, 2026-05-13, 2026-05-14, 2026-05-15, 2026-05-16, 2026-05-18, 2026-05-19, 2026-05-20, 2026-05-21, 2026-05-22, and 2026-05-23)
+                    const filteredAttendance = userAttendance.attendance.filter(record => 
+                        record.date === '2026-05-11' || record.date === '2026-05-12' || record.date === '2026-05-13' || record.date === '2026-05-14' || record.date === '2026-05-15' || record.date === '2026-05-16' || record.date === '2026-05-18' || record.date === '2026-05-19' || record.date === '2026-05-20' || record.date === '2026-05-21' || record.date === '2026-05-22' || record.date === '2026-05-23'
+                    );
+                    
+                    // If no data for 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, and 23, show message
+                    if (filteredAttendance.length === 0) {
+                        container.innerHTML = '<p class="no-attendance">No attendance data found for dates 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, and 23.</p>';
+                        return;
+                    }
+                    
+                    let presentCount = 0;
+                    let absentCount = 0;
+                    
+                    // Group attendance by date
+                    const attendanceByDate = {};
+                    filteredAttendance.forEach(record => {
+                        const date = record.date;
+                        if (!attendanceByDate[date]) {
+                            attendanceByDate[date] = [];
+                        }
+                        attendanceByDate[date].push(record);
+                        
+                        if (record.status === 'present') {
+                            presentCount++;
+                        } else {
+                            absentCount++;
+                        }
+                    });
+                    
+                    // Sort dates
+                    const sortedDates = Object.keys(attendanceByDate).sort();
+                    
+                    let attendanceHTML = '<div class="attendance-periods">';
+                    
+                    sortedDates.forEach(date => {
+                        const records = attendanceByDate[date];
+                        attendanceHTML += `
+                            <div class="attendance-period">
+                                <div class="period-date">${date}</div>
+                                <div class="period-slots">
+                        `;
+                        
+                        records.forEach(record => {
+                            const statusClass = record.status === 'present' ? 'present' : 'absent';
+                            const statusText = record.status === 'present' ? 'P' : 'A';
+                            const timeSlot = record.time_slot || 'N/A';
+                            
+                            attendanceHTML += `
+                                <div class="period-slot ${statusClass}">
+                                    <div class="slot-time">${timeSlot}</div>
+                                    <div class="slot-status">${statusText}</div>
+                                </div>
+                            `;
+                        });
+                        
+                        attendanceHTML += `
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    attendanceHTML += '</div>';
+                    
+                    const totalDays = presentCount + absentCount;
+                    const attendancePercentage = totalDays > 0 ? ((presentCount / totalDays) * 100).toFixed(1) : 0;
+                    
+                    attendanceHTML += `
+                        <div class="attendance-summary">
+                            <p><strong>Total Sessions:</strong> ${totalDays}</p>
+                            <p><strong>Present:</strong> ${presentCount} sessions</p>
+                            <p><strong>Absent:</strong> ${absentCount} sessions</p>
+                            <p><strong>Attendance Percentage:</strong> ${attendancePercentage}%</p>
+                        </div>
+                    `;
+                    
+                    container.innerHTML = attendanceHTML;
+                } else {
+                    container.innerHTML = '<p class="no-attendance">No attendance record found for your username.</p>';
+                }
+            } catch (error) {
+                console.error('Error loading attendance data:', error);
+                document.getElementById('attendanceContainer').innerHTML = '<p class="no-attendance">Error loading attendance data.</p>';
+            }
+        }
+
+        // Load attendance when page loads
+        loadAttendance();
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
