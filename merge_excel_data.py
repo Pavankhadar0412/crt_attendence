@@ -16,7 +16,8 @@ excel_files = [
     r'c:\Users\pavan\Downloads\Y-23  CRT  SUMMER TRAINING  Attendance(20.05.2026) (2).xlsx',
     r'c:\Users\pavan\Downloads\Y-23  CRT  SUMMER TRAINING  Attendance(21.05.2026).xlsx',
     r'c:\Users\pavan\Downloads\Y-23  CRT  SUMMER TRAINING  Attendance (22.05.2026).xlsx',
-    r'c:\Users\pavan\Downloads\Y-23  CRT  SUMMER TRAINING  Attendance (23.05.2026).xlsx'
+    r'c:\Users\pavan\Downloads\Y-23  CRT  SUMMER TRAINING  Attendance (23.05.2026).xlsx',
+    r'c:\Users\pavan\Downloads\Y-23  CRT  SUMMER TRAINING  Attendance (25.05.2026).xlsx'
 ]
 
 # Dictionary to store all student data
@@ -78,6 +79,8 @@ for excel_file in excel_files:
             base_date = datetime(2026, 5, 22)
         elif '23.05.2026' in excel_file:
             base_date = datetime(2026, 5, 23)
+        elif '25.05.2026' in excel_file or '25.05.26' in excel_file:
+            base_date = datetime(2026, 5, 25)
         else:
             base_date = datetime(2024, 5, 11)
         

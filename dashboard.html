@@ -50,9 +50,9 @@
         .dashboard-content {
             flex: 1;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
             padding: 40px;
+            width: 100%;
         }
 
         .welcome-card {
@@ -61,7 +61,9 @@
             border-radius: 10px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             text-align: center;
-            max-width: 500px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .welcome-card h2 {
@@ -179,6 +181,218 @@
             font-size: 14px;
         }
 
+        .attendance-calculator {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .attendance-calculator h4 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .attendance-calculator p {
+            margin: 8px 0;
+            color: #856404;
+            font-size: 14px;
+        }
+
+        .calculator-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .calculator-buttons button {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .calculator-buttons button:first-child {
+            background: #28a745;
+            color: white;
+        }
+
+        .calculator-buttons button:first-child:hover {
+            background: #218838;
+        }
+
+        .calculator-buttons button:last-child {
+            background: #dc3545;
+            color: white;
+        }
+
+        .calculator-buttons button:last-child:hover {
+            background: #c82333;
+        }
+
+        .calculator-result {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            border-left: 4px solid #17a2b8;
+        }
+
+        .calculator-result p {
+            margin: 5px 0;
+            color: #495057;
+            font-size: 14px;
+        }
+
+        .calculator-result strong {
+            color: #17a2b8;
+        }
+
+        .date-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .date-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .date-checkbox:hover {
+            background: #e9ecef;
+        }
+
+        .date-checkbox input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .date-checkbox span {
+            font-size: 13px;
+            color: #495057;
+        }
+
+        .date-period-selector {
+            margin-bottom: 10px;
+        }
+
+        .period-selection {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 3px solid #ffc107;
+        }
+
+        .period-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #856404;
+            margin-bottom: 8px;
+        }
+
+        .period-checkbox {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-right: 10px;
+            margin-bottom: 5px;
+            padding: 5px 8px;
+            background: white;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .period-checkbox:hover {
+            background: #e9ecef;
+        }
+
+        .period-checkbox input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+            cursor: pointer;
+        }
+
+        .period-checkbox span {
+            font-size: 12px;
+            color: #495057;
+        }
+
+        .calculator-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #17a2b8;
+        }
+
+        .calculator-section p {
+            margin: 0 0 10px 0;
+            color: #495057;
+            font-size: 14px;
+        }
+
+        .custom-date-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .custom-date-input label {
+            font-size: 13px;
+            color: #495057;
+        }
+
+        .date-picker {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .custom-date-input button {
+            padding: 8px 15px;
+            background: #17a2b8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .custom-date-input button:hover {
+            background: #138496;
+        }
+
+        #customDatesContainer {
+            margin-top: 15px;
+        }
+
         .no-attendance {
             color: #6c757d;
             font-style: italic;
@@ -194,8 +408,9 @@
 
     <div class="dashboard-content">
         <div class="welcome-card">
-            <h2>Welcome to the Dashboard!</h2>
+            <h2>Happy to see you in this page</h2>
             <p>You have successfully logged in.</p>
+            <p>You can check your Summer Crt attendence here</p>
             <div class="user-info">
                 <p><strong>ID Number:</strong> <span id="displayUsername"></span></p>
                 <p><strong>Name:</strong> <span id="displayName"></span></p>
@@ -206,7 +421,7 @@
                 <p><strong>CRT Room:</strong> <span id="displayCrtRoom"></span></p>
                 <p><strong>Login Time:</strong> <span id="loginTime"></span></p>
             </div>
-            <div class="attendance-section">
+            <div class="attendance-section" id="attendance-section">
                 <h3>Your Attendance Record</h3>
                 <div id="attendanceContainer">
                     <p class="no-attendance">Loading attendance data...</p>
@@ -252,14 +467,14 @@
                     document.getElementById('displayCrtSec').textContent = userAttendance.crt_sec || 'N/A';
                     document.getElementById('displayCrtRoom').textContent = userAttendance.crt_room || 'N/A';
                     
-                    // Filter attendance to show dates 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, and 23 (2026-05-11, 2026-05-12, 2026-05-13, 2026-05-14, 2026-05-15, 2026-05-16, 2026-05-18, 2026-05-19, 2026-05-20, 2026-05-21, 2026-05-22, and 2026-05-23)
+                    // Filter attendance to show dates 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, and 25 (2026-05-11, 2026-05-12, 2026-05-13, 2026-05-14, 2026-05-15, 2026-05-16, 2026-05-18, 2026-05-19, 2026-05-20, 2026-05-21, 2026-05-22, 2026-05-23, and 2026-05-25)
                     const filteredAttendance = userAttendance.attendance.filter(record => 
-                        record.date === '2026-05-11' || record.date === '2026-05-12' || record.date === '2026-05-13' || record.date === '2026-05-14' || record.date === '2026-05-15' || record.date === '2026-05-16' || record.date === '2026-05-18' || record.date === '2026-05-19' || record.date === '2026-05-20' || record.date === '2026-05-21' || record.date === '2026-05-22' || record.date === '2026-05-23'
+                        record.date === '2026-05-11' || record.date === '2026-05-12' || record.date === '2026-05-13' || record.date === '2026-05-14' || record.date === '2026-05-15' || record.date === '2026-05-16' || record.date === '2026-05-18' || record.date === '2026-05-19' || record.date === '2026-05-20' || record.date === '2026-05-21' || record.date === '2026-05-22' || record.date === '2026-05-23' || record.date === '2026-05-25'
                     );
                     
-                    // If no data for 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, and 23, show message
+                    // If no data for 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, and 25, show message
                     if (filteredAttendance.length === 0) {
-                        container.innerHTML = '<p class="no-attendance">No attendance data found for dates 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, and 23.</p>';
+                        container.innerHTML = '<p class="no-attendance">No attendance data found for dates 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, and 25.</p>';
                         return;
                     }
                     
@@ -282,10 +497,48 @@
                         }
                     });
                     
-                    // Sort dates
-                    const sortedDates = Object.keys(attendanceByDate).sort();
+                    // Sort dates from latest to old
+                    const sortedDates = Object.keys(attendanceByDate).sort().reverse();
                     
-                    let attendanceHTML = '<div class="attendance-periods">';
+                    const totalDays = presentCount + absentCount;
+                    const attendancePercentage = totalDays > 0 ? ((presentCount / totalDays) * 100).toFixed(1) : 0;
+                    
+                    // Start with attendance calculator at the top
+                    let attendanceHTML = `
+                        <div class="attendance-calculator">
+                            <h4>Attendance Calculator</h4>
+                            <p><strong>Current Attendance:</strong> ${attendancePercentage}%</p>
+                            
+                            <div class="calculator-section">
+                                <p><strong>Add custom dates:</strong></p>
+                                <div class="custom-date-input">
+                                    <label for="customDate">Select a date:</label>
+                                    <input type="date" id="customDate" class="date-picker">
+                                    <button type="button" onclick="addCustomDate()">Add Date</button>
+                                </div>
+                                <div id="customDatesContainer"></div>
+                            </div>
+                            
+                            <div class="calculator-buttons">
+                                <button onclick="calculateAttendance('present', ${presentCount}, ${absentCount})">If Present on Selected Periods</button>
+                                <button onclick="calculateAttendance('absent', ${presentCount}, ${absentCount})">If Absent on Selected Periods</button>
+                            </div>
+                            <div id="calculatorResult" class="calculator-result"></div>
+                        </div>
+                    `;
+                    
+                    // Add attendance summary
+                    attendanceHTML += `
+                        <div class="attendance-summary">
+                            <p><strong>Total Sessions:</strong> ${totalDays}</p>
+                            <p><strong>Present:</strong> ${presentCount} sessions</p>
+                            <p><strong>Absent:</strong> ${absentCount} sessions</p>
+                            <p><strong>Attendance Percentage:</strong> ${attendancePercentage}%</p>
+                        </div>
+                    `;
+                    
+                    // Add attendance records
+                    attendanceHTML += '<div class="attendance-periods">';
                     
                     sortedDates.forEach(date => {
                         const records = attendanceByDate[date];
@@ -316,18 +569,6 @@
                     
                     attendanceHTML += '</div>';
                     
-                    const totalDays = presentCount + absentCount;
-                    const attendancePercentage = totalDays > 0 ? ((presentCount / totalDays) * 100).toFixed(1) : 0;
-                    
-                    attendanceHTML += `
-                        <div class="attendance-summary">
-                            <p><strong>Total Sessions:</strong> ${totalDays}</p>
-                            <p><strong>Present:</strong> ${presentCount} sessions</p>
-                            <p><strong>Absent:</strong> ${absentCount} sessions</p>
-                            <p><strong>Attendance Percentage:</strong> ${attendancePercentage}%</p>
-                        </div>
-                    `;
-                    
                     container.innerHTML = attendanceHTML;
                 } else {
                     container.innerHTML = '<p class="no-attendance">No attendance record found for your username.</p>';
@@ -346,6 +587,134 @@
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('username');
             window.location.href = 'index.html';
+        }
+
+        // Toggle period selection visibility
+        function togglePeriodSelection(date) {
+            const periodDiv = document.getElementById(`periods-${date}`);
+            const checkbox = document.querySelector(`.date-checkbox-input[value="${date}"]`);
+            
+            if (checkbox.checked) {
+                periodDiv.style.display = 'block';
+            } else {
+                periodDiv.style.display = 'none';
+                // Uncheck all periods when date is unchecked
+                periodDiv.querySelectorAll('.period-checkbox-input').forEach(cb => cb.checked = false);
+            }
+        }
+
+        // Add custom date
+        function addCustomDate() {
+            const dateInput = document.getElementById('customDate');
+            const customDate = dateInput.value;
+            
+            if (!customDate) {
+                alert('Please select a date');
+                return;
+            }
+            
+            const container = document.getElementById('customDatesContainer');
+            const dateId = `custom-${customDate}`;
+            
+            // Check if date already exists
+            if (document.getElementById(dateId)) {
+                alert('This date has already been added');
+                return;
+            }
+            
+            const dateDiv = document.createElement('div');
+            dateDiv.id = dateId;
+            dateDiv.className = 'date-period-selector';
+            dateDiv.innerHTML = `
+                <label class="date-checkbox">
+                    <input type="checkbox" value="${customDate}" class="date-checkbox-input custom-date-checkbox" onchange="togglePeriodSelection('${customDate}')">
+                    <span>${customDate}</span>
+                    <button type="button" onclick="removeCustomDate('${customDate}')" style="margin-left: 10px; padding: 2px 8px; background: #dc3545; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 11px;">Remove</button>
+                </label>
+                <div class="period-selection" id="periods-${customDate}" style="display: none;">
+                    <p class="period-label">Select periods:</p>
+                    ${[1, 2, 3, 4, 5, 6, 7, 8].map(period => `
+                        <label class="period-checkbox">
+                            <input type="checkbox" value="${period}" class="period-checkbox-input" data-date="${customDate}">
+                            <span>P${period}</span>
+                        </label>
+                    `).join('')}
+                </div>
+            `;
+            
+            container.appendChild(dateDiv);
+            dateInput.value = '';
+        }
+
+        // Remove custom date
+        function removeCustomDate(date) {
+            const dateDiv = document.getElementById(`custom-${date}`);
+            if (dateDiv) {
+                dateDiv.remove();
+            }
+        }
+
+        // Attendance calculator function
+        function calculateAttendance(status, presentCount, absentCount) {
+            const resultDiv = document.getElementById('calculatorResult');
+            
+            // Get selected dates and their periods
+            const selectedDateCheckboxes = document.querySelectorAll('.date-checkbox-input:checked');
+            const selectedDates = Array.from(selectedDateCheckboxes).map(cb => cb.value);
+            
+            if (selectedDates.length === 0) {
+                resultDiv.innerHTML = '<p style="color: #dc3545;">Please select at least one date to calculate attendance.</p>';
+                return;
+            }
+            
+            // Get selected periods for each date
+            let totalSelectedPeriods = 0;
+            const datePeriodMap = {};
+            
+            selectedDates.forEach(date => {
+                const periodCheckboxes = document.querySelectorAll(`.period-checkbox-input[data-date="${date}"]:checked`);
+                const selectedPeriods = Array.from(periodCheckboxes).map(cb => parseInt(cb.value));
+                
+                if (selectedPeriods.length === 0) {
+                    // If no periods selected for a date, assume all 8 periods
+                    selectedPeriods.push(1, 2, 3, 4, 5, 6, 7, 8);
+                }
+                
+                datePeriodMap[date] = selectedPeriods;
+                totalSelectedPeriods += selectedPeriods.length;
+            });
+            
+            // Calculate new attendance based on selected periods
+            let newPresentCount = presentCount;
+            let newAbsentCount = absentCount;
+            
+            if (status === 'present') {
+                newPresentCount += totalSelectedPeriods;
+            } else {
+                newAbsentCount += totalSelectedPeriods;
+            }
+            
+            const newTotal = newPresentCount + newAbsentCount;
+            const newPercentage = ((newPresentCount / newTotal) * 100).toFixed(1);
+            
+            // Build result HTML
+            let resultHTML = `
+                <p><strong>If ${status === 'present' ? 'Present' : 'Absent'} on selected periods:</strong></p>
+                <p>Total Selected Periods: ${totalSelectedPeriods}</p>
+            `;
+            
+            Object.entries(datePeriodMap).forEach(([date, periods]) => {
+                resultHTML += `<p>${date}: Periods ${periods.join(', ')}</p>`;
+            });
+            
+            resultHTML += `
+                <p>Total Sessions: ${newTotal}</p>
+                <p>Present: ${newPresentCount} sessions</p>
+                <p>Absent: ${newAbsentCount} sessions</p>
+                <p><strong>New Attendance Percentage: ${newPercentage}%</strong></p>
+            `;
+            
+            resultDiv.innerHTML = resultHTML;
         }
     </script>
 </body>
