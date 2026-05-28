@@ -469,14 +469,14 @@
                     document.getElementById('displayCrtSec').textContent = userAttendance.crt_sec || 'N/A';
                     document.getElementById('displayCrtRoom').textContent = userAttendance.crt_room || 'N/A';
                     
-                    // Filter attendance to show dates 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, and 25 (2026-05-11, 2026-05-12, 2026-05-13, 2026-05-14, 2026-05-15, 2026-05-16, 2026-05-18, 2026-05-19, 2026-05-20, 2026-05-21, 2026-05-22, 2026-05-23, and 2026-05-25)
+                    // Filter attendance to show dates 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 25, and 27 (2026-05-11, 2026-05-12, 2026-05-13, 2026-05-14, 2026-05-15, 2026-05-16, 2026-05-18, 2026-05-19, 2026-05-20, 2026-05-21, 2026-05-22, 2026-05-23, 2026-05-25, and 2026-05-27)
                     const filteredAttendance = userAttendance.attendance.filter(record => 
-                        record.date === '2026-05-11' || record.date === '2026-05-12' || record.date === '2026-05-13' || record.date === '2026-05-14' || record.date === '2026-05-15' || record.date === '2026-05-16' || record.date === '2026-05-18' || record.date === '2026-05-19' || record.date === '2026-05-20' || record.date === '2026-05-21' || record.date === '2026-05-22' || record.date === '2026-05-23' || record.date === '2026-05-25'
+                        record.date === '2026-05-11' || record.date === '2026-05-12' || record.date === '2026-05-13' || record.date === '2026-05-14' || record.date === '2026-05-15' || record.date === '2026-05-16' || record.date === '2026-05-18' || record.date === '2026-05-19' || record.date === '2026-05-20' || record.date === '2026-05-21' || record.date === '2026-05-22' || record.date === '2026-05-23' || record.date === '2026-05-25' || record.date === '2026-05-27'
                     );
                     
-                    // If no data for 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, and 25, show message
+                    // If no data for 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 25, and 27, show message
                     if (filteredAttendance.length === 0) {
-                        container.innerHTML = '<p class="no-attendance">No attendance data found for dates 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, and 25.</p>';
+                        container.innerHTML = '<p class="no-attendance">No attendance data found for dates 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 25, and 27.</p>';
                         return;
                     }
                     
